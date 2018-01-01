@@ -1,0 +1,52 @@
+﻿
+@using Hanashop.Models
+@*@using PagedList.Mvc;
+
+    @model PagedList.PagedList<QUANAO>*@
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <h3 style="Text-align: Center; color: white"> QUẦN ÁO MỚI </h3>
+        @foreach (var sach in Model)
+        {
+        <div class="col-sm-3 col-lg-3 col-md-3">
+            <div class="thumbnail">
+                <a href="@Url.Action("Details", "Trangchu", new { id = sach.MaQA })">
+                    <img alt="@sach.TenQA" src="~/images/@sach.Anhbia" width="100%" />
+                    <div>
+                        <br />
+                        <h4 style="text-align: center;color:red">
+                            @sach.TenQA
+                        </h4>
+                        <p></p>
+                    </div>
+
+            </div>
+        </div>
+        }
+        <div class="row"> <p></p></div>
+        <div class="row">
+
+            @Html.Action("Chude", "Trangchu")
+
+        </div>
+
+        <div class="row">
+            @Html.Action("Nhaxuatban", "Trangchu")
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Hanashop.Models.QUANAO>
+
+@{
+    ViewBag.Title = "SPTheoNXB";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+
+            @Html.Action("Chudemenu", "Trangchu")
+
+            @Html.Action("Nhasanxuatmenu", "Trangchu")
+
+
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <h3 style="Text-align: Center; color: white"> QUẦN ÁO THEO NHÀ XUẤT BẢN</h3>
+                @foreach (var sach in Model)
+                {
+                <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="thumbnail">
+                        <a href="@Url.Action("Details", "Trangchu", new { id = sach.MaQA })">
+                            <img alt="@sach.TenQA" src="~/images/@sach.Anhbia" width="100%" />
+                            <div>
+                                <br />
+                                <h4 style="text-align: center; color:red">
+                                    @sach.TenQA
+                                </h4>
+                                <p></p>
+                            </div>
+
+                    </div>
+                </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

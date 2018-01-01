@@ -1,0 +1,39 @@
+﻿@model Hanashop.Models.NHAXUATBAN
+@{
+    ViewBag.Title = "Chitietnxb";
+    Layout = "~/Views/Shared/layoutadmin.cshtml";
+}
+<div>
+    <h4>Nhà Xuất Bản</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Tên Nhà Xuất Bản
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenNXB)
+        </dd>
+
+        <dt>
+            Địa chỉ nhà xuất bản
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Diachi)
+        </dd>
+
+        <dt>
+           Điện thoại nhà xuất bản
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DienThoai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "suanxb", new { id = Model.MaNXB }) |
+    @Html.ActionLink("Trở về", "Nhaxuatban")
+</p>

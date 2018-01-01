@@ -1,0 +1,13 @@
+﻿
+
+@model IEnumerable<Hanashop.Models.NHAXUATBAN>
+<p class="lead" style="color:white"> NHÀ XUẤT BẢN </p>
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+    <a href="@Url.Action("SPTheoNXB", "Trangchu", new { id = item.MaNXB })" class="list-group-item">
+        @item.TenNXB
+    </a>
+    }
+</div>
+

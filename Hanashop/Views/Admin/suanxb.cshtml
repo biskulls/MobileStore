@@ -1,0 +1,51 @@
+﻿
+@model Hanashop.Models.NHAXUATBAN
+
+@{
+    ViewBag.Title = "suanxb";
+    Layout = "~/Views/Shared/layoutadmin.cshtml";
+}
+
+<h2>Sửa Nhà Xuất Bản</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TenNXB, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="txt_TenSP" name="txt_TenSP" class="textCtrl" required="required" value="@Model.TenNXB" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Diachi, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="txt_GiaCu" name="txt_GiaCu" class="textCtrl" required="required" value="@Model.Diachi" />
+
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DienThoai, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="txt_MoTa" name="txt_MoTa" class="textCtrl" required="required" value="@Model.DienThoai" />
+
+                @* <textarea id="txt_MoTa" name="txt_MoTa" required="required">@Model.DienThoai</textarea>*@
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<div>
+    @Html.ActionLink("Trở về", "Index")
+</div>

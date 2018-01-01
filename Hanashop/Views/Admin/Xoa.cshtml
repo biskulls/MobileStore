@@ -1,0 +1,88 @@
+﻿
+@model Hanashop.Models.QUANAO
+
+@{
+    ViewBag.Title = "Xoa";
+    Layout = "~/Views/Shared/layoutadmin.cshtml";
+}
+
+<h2>Xác Nhận Thông Tin Quần Áo Cần Xóa</h2>
+
+<h3>Bạn muốn xóa quần áo này</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên Quần Áo :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenQA)
+        </dd>
+
+        <dt>
+            Giá Bán :
+        </dt>
+        <dd>@Html.DisplayFor(model => model.Giaban) VNĐ</dd>
+
+        <dt>
+            Mô tả :
+        </dt>
+
+        <dd style="width:600px; text-align:justify">
+            @Html.DisplayFor(model => model.Mota)
+        </dd>
+
+        <dt>
+            Ảnh Bìa :
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/images/" + Model.Anhbia)" width="50%" />
+        </dd>
+
+        <dt>
+            Ngày Cập Nhật :
+        </dt>
+
+        <dd>
+            @String.Format("{0:dd/MM/yyyy}", Model.Ngaycapnhat)
+        </dd>
+
+        <dt>
+            Số Lượng Tồn :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Soluongton)
+        </dd>
+
+        <dt>
+            Mã Chủ Đề :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaCD)
+        </dd>
+
+        <dt>
+            Mã Nhà Xuất Bản :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaNXB)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+    @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về", "Quanao")
+        </div>
+    }
+</div>

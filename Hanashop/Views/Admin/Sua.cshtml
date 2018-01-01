@@ -1,0 +1,240 @@
+﻿
+@model Hanashop.Models.QUANAO
+
+@{
+    ViewBag.Title = "Sua";
+    Layout = "~/Views/Shared/layoutadmin.cshtml";
+}
+
+<h2>Chỉnh Sửa Sản Phẩm</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.MaQA)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TenQA, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="txt_TenSP" name="txt_TenSP" class="textCtrl" required="required" value="@Model.TenQA" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Anhbia, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @* <input type="file" name="fileupload" />*@
+                <input type="file" id="txt_UrlHinh" name="txt_UrlHinh" class="textCtrl" required="required" value="@Model.Anhbia" />
+
+                <img src="@Url.Content("~/images/" + Model.Anhbia)" width="50%" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Giaban, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="txt_GiaCu" name="txt_GiaCu" class="number_ne" maxlength="8" required="required" pattern="[0-9]{4,8}" title="Chỉ được nhập đơn vị số nghìn đến chục triệu !" value="@Model.Giaban" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaNXB, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*   @Html.DropDownList("sl_NhaSX", null, new { @class = "textCtrl" })*@
+                @Html.DropDownList("MaNXB")
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaCD, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*      @Html.DropDownList("sl_CD", null, new { @class = "textCtrl" })*@
+                @Html.DropDownList("MaCD")
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Soluongton, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="txt_SLTon" name="txt_SLTon" class="number_ne" maxlength="3" required="required" pattern="[0-9]{1,3}" title="Chỉ được nhập số !" value="@Model.Soluongton" />
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ngaycapnhat, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="date" id="txt_NgayCapNhat" name="txt_NgayCapNhat" class="textCtrl" required="required" value="@string.Format("{0:yyyy-MM-dd}", Model.Ngaycapnhat)" />
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Mota, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="txt_MoTa" name="txt_MoTa" class="textCtrl" required="required" value="@Model.Mota" />
+
+                @*<textarea id="txt_MoTa" name="txt_MoTa" required="required">@Model.Mota</textarea>*@
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+        @*@*<tr>
+                <td class="auto_Left">Tên sản phẩm</td>
+                <td class="auto_Right">
+                    <input type="text" id="txt_TenSP" name="txt_TenSP" class="textCtrl" required="required" value="@Model.TenQA" />
+                </td>
+                </tr>
+            <tr>
+                <td class="auto_Left">Hình ảnh:</td>
+                <td class="auto_Right">
+                    <input type="text" id="txt_UrlHinh" name="txt_UrlHinh" class="textCtrl" required="required" value="@Model.Anhbia" />
+                    <input type="button" id="btn_TaiLen" onclick="BrowseServer();" value="Tải lên" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="auto_Left">Giá bán:</td>
+                <td class="auto_Right">
+                    <input type="text" id="txt_GiaCu" name="txt_GiaCu" class="number_ne" maxlength="8" required="required" pattern="[0-9]{4,8}" title="Chỉ được nhập đơn vị số nghìn đến chục triệu !" value="@Model.Giaban" />
+                </td>
+                </tr>
+            <tr>
+                <td class="auto_Left">Nhà sản xuất:</td>
+                <td class="auto_Right">
+                    @Html.DropDownList("sl_NhaSX", null, new { @class = "textCtrl" })
+                </td>
+            </tr>
+            <tr>
+                <td class="auto_Left">Chủ Đề:</td>
+                <td class="auto_Right">
+                    @Html.DropDownList("sl_CD", null, new { @class = "textCtrl" })
+                </td>
+            </tr>
+            <tr>
+                <td class="auto_Left">Số lượng tồn</td>
+                <td class="auto_Right">
+                    <input type="text" id="txt_SLTon" name="txt_SLTon" class="number_ne" maxlength="3" required="required" pattern="[0-9]{1,3}" title="Chỉ được nhập số !" value="@Model.Soluongton" />
+                </td>
+
+            </tr>
+
+            <tr>
+                <td class="auto_Left">Ngày cập nhật:</td>
+                <td class="auto_Right">
+                    <input type="date" id="txt_NgayCapNhat" name="txt_NgayCapNhat" class="textCtrl" required="required" value="@string.Format("{0:yyyy-MM-dd}", Model.Ngaycapnhat)" />
+                </td>
+            </tr>
+            <tr>
+                <td class="auto_Left">Mô tả:</td>
+                <td class="auto_Right" colspan="3">
+                    <textarea id="txt_MoTa" name="txt_MoTa" required="required">@Model.Mota</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <div style="text-align: center">
+                        <input id="NhapLai" type="reset" value="Nhập lại" class="button_ne" />
+                        <input type="submit" value="Lưu chỉnh sửa" class="button_ne" />
+                    </div>
+                </td>
+            </tr>*@
+
+    </div>
+
+}
+
+
+
+@*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.MaQA)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TenQA, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TenQA)
+                    @Html.ValidationMessageFor(model => model.TenQA)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Giaban, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Giaban)
+                    @Html.ValidationMessageFor(model => model.Giaban)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Mota, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <textarea name="Mota"> Mô tả thông tin quần áo</textarea>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Anhbia, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    Chọn Ảnh Mới
+                    <input type="file" name="fileupload" />
+                    <img src="@Url.Content("~/images/" + Model.Anhbia)" width="50%" />
+                    @ViewBag.Thongbao
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ngaycapnhat, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Ngaycapnhat)
+                    @Html.ValidationMessageFor(model => model.Ngaycapnhat)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Soluongton, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Soluongton)
+                    @Html.ValidationMessageFor(model => model.Soluongton)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MaCD, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("MaCD")
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MaNXB, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("MaNXB")
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+*@
+<div>
+    @Html.ActionLink("Trở về", "Index")
+</div>

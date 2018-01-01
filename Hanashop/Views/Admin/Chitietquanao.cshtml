@@ -1,0 +1,84 @@
+﻿
+@model Hanashop.Models.QUANAO
+
+@{
+    ViewBag.Title = "Chitietquanao";
+    Layout = "~/Views/Shared/layoutadmin.cshtml";
+}
+
+<h2>Chi Tiết Quần Áo</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên Quần Áo :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenQA)
+        </dd>
+
+        <dt>
+            Giá Bán :
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Giaban) VNĐ
+        </dd>
+
+        <dt>
+            Mô tả :
+        </dt>
+
+        <dd style="width:600px; text-align:justify">
+            @Html.DisplayFor(model => model.Mota)
+        </dd>
+
+        <dt>
+            Ảnh Bìa :
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/images/" + Model.Anhbia)" width="50%" />
+        </dd>
+
+        <dt>
+            Ngày Cập Nhật :
+        </dt>
+
+        <dd>
+            @String.Format("{0:dd/MM/yyyy}", Model.Ngaycapnhat)
+        </dd>
+
+        <dt>
+            Số Lượng Tồn :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Soluongton)
+        </dd>
+
+        <dt>
+            Mã Chủ Đề :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaCD)
+        </dd>
+
+        <dt>
+            Mã Nhà Xuất Bản :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaNXB)
+        </dd>
+
+    </dl>
+    <p>
+        @Html.ActionLink("Chỉnh sửa", "Sua", new { id = Model.MaQA }) |
+        @Html.ActionLink("Trở về", "Quanao")
+    </p>
+</div>
+

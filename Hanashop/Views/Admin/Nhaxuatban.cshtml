@@ -1,0 +1,38 @@
+﻿
+@model IEnumerable<Hanashop.Models.NHAXUATBAN>
+@{
+    ViewBag.Title = "Nhaxuatban";
+    Layout = "~/Views/Shared/layoutadmin.cshtml";
+}
+
+<h2>Quản Lý Nhà Xuất Bản</h2>
+
+
+
+<p>
+    @Html.ActionLink("Thêm Nhà Xuất Bản", "themnxb")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên Nhà Xuất Bản
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenNXB)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "suanxb", new { id = item.MaNXB }) |
+            @Html.ActionLink("Chi tiết", "Chitietnxb", new { id = item.MaNXB }) |
+            @Html.ActionLink("Xóa", "xoanxb", new { id = item.MaNXB })
+
+        </td>
+    </tr>
+    }
+
+</table>

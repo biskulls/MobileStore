@@ -1,0 +1,23 @@
+﻿
+@model IEnumerable<Hanashop.Models.NHAXUATBAN>
+
+<h3 style="Text-align: Center; color: white"> NHÀ SẢN XUẤT </h3>
+
+@foreach (var sach in Model)
+{
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <a href="@Url.Action("SPTheoNXB", "Trangchu", new { id = sach.MaNXB })">
+
+                <div>
+                    <br />
+                    <h4 style="text-align: center;color:red">
+                        @sach.TenNXB
+                    </h4>
+                    <p></p>
+                </div>
+
+        </div>
+    </div>
+}
+
